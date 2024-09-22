@@ -22,8 +22,7 @@ node_modules/
 *.sln
 *.sw?
 
-# 忽略 .env 文件
-.env
+
 
 # 其他忽略規則
 node_modules/
