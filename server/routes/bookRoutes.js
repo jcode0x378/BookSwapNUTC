@@ -12,23 +12,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-// 添加新書本
+// 添加書籍
 router.post('/add', async (req, res) => {
-  const book = new Book({
-    title: req.body.title,
-    photo: req.body.photo,
-    price: req.body.price,
-    location: req.body.location,
-    availableTimes: req.body.availableTimes,
-    description: req.body.description,
-    owner: req.body.owner,
-  });
-
+  console.log('Request body:', req.body); // 添加這行來檢查請求數據
   try {
-    const newBook = await book.save();
+    const newBook = new Book(req.body);
+    await newBook.save();
     res.status(201).json(newBook);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    console.error('Error saving book:', err); // 添加這行來檢查錯誤信息
+    res.status(400).json({ error: err.message });
   }
 });
 
